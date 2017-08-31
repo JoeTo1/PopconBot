@@ -1,5 +1,5 @@
 {
-  "name": "kittenblock-pc",
+  "name": "popconblock-pc",
   "version": "1.0.0",
   "description": "",
   "main": "kittenblock.js",
@@ -17,10 +17,6 @@
     "height": 900,
     "min_width": 200,
     "min_height": 200
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://git.oschina.net/riven/kittenblock-pc.git"
   },
   "author": "",
   "license": "ISC",

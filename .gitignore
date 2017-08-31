@@ -7,6 +7,8 @@
 /node_modules
 npm-*
 
+package-lock.json
+
 
 # Testing
 /.nyc_output
@@ -36,3 +38,4 @@ npm-*
 /nwjs/nw_elf.dll
 /nwjs/credits.html
 /nwjs/ffmpeg.dll
+/nwjs/app

@@ -4,7 +4,7 @@ const defaultsDeep = require('lodash.defaultsdeep');
 const React = require('react');
 const VM = require('../../scratch-vm');
 const ScratchBlocks = require('../../scratch-blocks');
-const KittenBlock = require('../../kittenblock-pc');
+const KittenBlock = require('../../popconblock-pc');
 
 const VMManager = require('../lib/vm-manager');
 const MediaLibrary = require('../lib/media-library');

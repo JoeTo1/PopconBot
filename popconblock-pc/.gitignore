@@ -8,6 +8,8 @@ npm-*
 
 /nwjs
 
+package-lock.json
+
 # Testing
 /.nyc_output
 /coverage
@@ -15,3 +17,4 @@ npm-*
 # Build
 /build
 /.opt-in
+kittenblock.js
