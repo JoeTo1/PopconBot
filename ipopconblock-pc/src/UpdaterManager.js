@@ -34,7 +34,7 @@ var download = function(url, dest, cb, progressCb) {
     })
 };
 
-UpdateManager.prototype.getServer = function(callback){
+UpdateManager.prototype.getServer = function(callback){/*
     http.get("http://download.kittenbot.cn/version.json",function(res){
         const statusCode = res.statusCode;
         const contentType = res.headers['content-type'];
@@ -50,7 +50,7 @@ UpdateManager.prototype.getServer = function(callback){
         });
 
 
-    });
+    });*/
 };
 
 UpdateManager.prototype.doUpdate = function(updatePath,extractPath,callback,progressCb){
@@ -73,4 +73,3 @@ UpdateManager.prototype.doUpdate = function(updatePath,extractPath,callback,prog
 
 
 module.exports = UpdateManager;
-

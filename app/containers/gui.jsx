@@ -4,7 +4,7 @@ const defaultsDeep = require('lodash.defaultsdeep');
 const React = require('react');
 const VM = require('../../scratch-vm');
 const ScratchBlocks = require('../../scratch-blocks');
-const KittenBlock = require('../../popconblock-pc');
+const KittenBlock = require('../../ipopconblock-pc');
 
 const VMManager = require('../lib/vm-manager');
 const MediaLibrary = require('../lib/media-library');
@@ -24,6 +24,8 @@ const SetupModal = require('./setup-modal.jsx');
 const SpriteLibrary = require('./sprite-library.jsx');
 const CostumeLibrary = require('./costume-library.jsx');
 const BackdropLibrary = require('./backdrop-library.jsx');
+const SensorTag = require('sensortag');
+const debugtool = require('nw.gui').Window.get()
 
 import { AlertList  } from "react-bs-notifier";
 
@@ -31,7 +33,7 @@ import { AlertList  } from "react-bs-notifier";
 class GUI extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, ['closeModal','toggleArduinoPanel','toggelStage','sendCommonData','portReadLine','deviceQuery','clearConsole',
+        bindAll(this, ['closeModal','toggleIpopconPanel','toggelStage','sendCommonData','portReadLine','deviceQuery','clearConsole',
                         'stopProject','restoreFirmware','openIno','updateEditorInstance','uploadProject','appendLog',
                         'openLoadProjectDialog','loadProject','selectLanguage','applyConfig','selectTarget',
                         'consoleSend','consoleClear','translateCode','saveProject','changeTitle','notify',
@@ -56,6 +58,8 @@ class GUI extends React.Component {
             updateProgress: 0,
             windowHeight: window.innerHeight,
         };
+
+        debugtool.showDevTools();
     }
     clearConsole(){
         this.consoleMsgBuff = [];
@@ -140,9 +144,19 @@ class GUI extends React.Component {
     closeModal () {
         this.setState({currentModal: null});
     }
-    toggleArduinoPanel(){
-        this.setState({showArduinoPanel: !this.state.showArduinoPanel});
+    toggleIpopconPanel(){
+        //this.setState({showArduinoPanel: !this.state.showArduinoPanel});
+        SensorTag.discover(function(sensorTag) {
+              console.log('discovered: ' + sensorTag);
+
+              sensorTag.on('disconnect', function() {
+                console.log('disconnected!');
+                process.exit(0);
+              });
+
+        });
     }
+
     toggelStage(){
         this.setState({showStage: !this.state.showStage})
     }
@@ -338,7 +352,7 @@ class GUI extends React.Component {
             updateKittenblock: ()=>this.updateKittenblock(),
         });
         headerBarProps = defaultsDeep({},headerBarProps,{
-            toggleArduinoPanel: ()=>this.toggleArduinoPanel(),
+            toggleIpopconPanel: ()=>this.toggleIpopconPanel(),
             toggleStage: ()=>this.toggelStage(),
             openSetupModal: ()=>this.openModal("setup-modal"),
             portReadLine: (line)=>this.portReadLine(line),

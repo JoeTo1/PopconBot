@@ -1,6 +1,6 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
-const KittenBlock = require('../../popconblock-pc');
+const KittenBlock = require('../../ipopconblock-pc');
 
 const SetupModalComponent = require('../components/setup-modal.jsx');
 

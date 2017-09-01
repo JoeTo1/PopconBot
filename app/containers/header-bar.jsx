@@ -1,6 +1,6 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
-const KittenBlock = require('../../popconblock-pc');
+const KittenBlock = require('../../ipopconblock-pc');
 
 const HeaderBarComponent = require('../components/header-bar.jsx');
 
@@ -68,7 +68,7 @@ class HeaderBar extends React.Component {
                 refreshPort={this.refreshPort}
                 selectPort={this.selectPort}
                 selectBoard={this.selectBoard}
-                toggleArduinoPanel={this.props.toggleArduinoPanel}
+                toggleIpopconPanel={this.props.toggleIpopconPanel}
                 toggleStage={this.props.toggleStage}
                 openSetupModal={this.props.openSetupModal}
                 connectedPort={this.state.connectedPort}

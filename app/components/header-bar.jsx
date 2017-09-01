@@ -21,7 +21,7 @@ class HeaderBarComponent extends React.Component {
             refreshPort,
             selectPort,
             selectBoard,
-            toggleArduinoPanel,
+            toggleIpopconPanel,
             toggleStage,
             connectedPort,
             selectedBoard,
@@ -132,8 +132,8 @@ class HeaderBarComponent extends React.Component {
                     </NavItem>
                     <NavItem>
                         <Button bsStyle="warning"
-                                onClick={toggleArduinoPanel}
-                        >Arduino</Button>
+                                onClick={toggleIpopconPanel}
+                        >Connect</Button>
                     </NavItem>
                     <NavItem>
                         <Button bsStyle="warning"
