@@ -4,8 +4,8 @@
   "version": "0.99",
   "main": "app/index.html",
   "window": {
-	"title": "Kitten-Blocks",
-	"icon": "KittenBotLogo.png",
+	"title": "Ipopcon",
+	"icon": "ipopcon.jpg",
     "show": true,
     "toolbar": true,
     "frame": true,

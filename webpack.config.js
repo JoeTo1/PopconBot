@@ -25,11 +25,11 @@ module.exports = {
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel-loader',
-            include: path.resolve(__dirname, 'app'),
-            query: {
-                plugins: ['transform-object-rest-spread'],
+            include: [path.resolve(__dirname, 'app'), path.resolve(__dirname, 'nwjs')],
+           query: {
+              plugins: ['transform-object-rest-spread'],
                 presets: ['es2015', 'react']
-            }
+           }
         },
         {
             test: /\.node$/,

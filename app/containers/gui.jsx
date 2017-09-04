@@ -24,8 +24,7 @@ const SetupModal = require('./setup-modal.jsx');
 const SpriteLibrary = require('./sprite-library.jsx');
 const CostumeLibrary = require('./costume-library.jsx');
 const BackdropLibrary = require('./backdrop-library.jsx');
-const SensorTag = require('sensortag');
-const debugtool = require('nw.gui').Window.get()
+const debugtool = require('nw.gui').Window.get();
 
 import { AlertList  } from "react-bs-notifier";
 
@@ -146,15 +145,37 @@ class GUI extends React.Component {
     }
     toggleIpopconPanel(){
         //this.setState({showArduinoPanel: !this.state.showArduinoPanel});
-        SensorTag.discover(function(sensorTag) {
-              console.log('discovered: ' + sensorTag);
+        //console.log(this.props.kb.plugin);
 
-              sensorTag.on('disconnect', function() {
-                console.log('disconnected!');
-                process.exit(0);
+
+
+
+        this.props.kb.plugin.IPOP.discover(function(ipopcon_device) {
+              console.log('discovered: ' + ipopcon_device);
+              ipopcon_device.connectAndSetUp(function(err) {
+                  if (err){
+                    console.log("connection error!!")
+                  }
+
+                  ipopcon_device.readDeviceName(function (error, deviceName) {
+                    console.log('\t connected device name = ' + deviceName);
+                  });
+
               });
 
-        });
+              this.props.kb.plugin.IPOP.__device = ipopcon_device;
+
+
+
+
+
+
+              ipopcon_device.on('disconnect', function() {
+                  console.log('disconnected!');
+                  process.exit(0);
+              });
+
+        }.bind(this));
     }
 
     toggelStage(){
@@ -449,3 +470,9 @@ GUI.defaultProps = {
 };
 
 module.exports = GUI;
+/*
+module.exports = {
+  GUI : GUI,
+  Ipopcon_device : Ipopcon_device
+};
+*/
