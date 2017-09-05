@@ -11303,7 +11303,7 @@ module.exports =
 		if(elem.prev){
 			elem.prev.next = prev;
 		}
-		
+
 		prev.parent = parent;
 		prev.prev = elem.prev;
 		prev.next = elem;
@@ -14862,6 +14862,7 @@ module.exports =
 	                thread.popStack();
 	            }
 	        }
+			//		console.log(arguments.callee.caller.toString());
 	        argValues[inputName] = currentStackFrame.reported[inputName];
 	    }
 
@@ -16069,6 +16070,7 @@ module.exports =
 	};
 
 	Scratch3MotionBlocks.prototype.turnRight = function (args, util) {
+		//console.log(arguments.callee.caller.toString());
 	    var degrees = Cast.toNumber(args.DEGREES);
 	    util.target.setDirection(util.target.direction + degrees);
 	};

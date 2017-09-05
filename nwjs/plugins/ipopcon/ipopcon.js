@@ -11,6 +11,7 @@ var Ipopcon = function (runtime) {
     this.runtime = runtime
     this.IPOP = Ipopcon_device;
     this.IPOP.__device = null;
+    this.IPOP._x = 0;
 
     this.color = {
         "primary": "#FF6680",
@@ -26,7 +27,7 @@ Ipopcon.prototype.getBlocks = function () {
 
     return {
 
-        'ipopcon_get_sensordata':{
+      'ipopcon_get_sensordata':{
 			/**
 			* descript :
 		  * @this Blockly.Block
@@ -37,12 +38,19 @@ Ipopcon.prototype.getBlocks = function () {
 				"message0": "get sensor data by noble",
 				"args0": [
 				],
-				"inputsInline": true,
+	/*			"inputsInline": true,
 				"previousStatement": null,
 				"nextStatement": null,
 				"colour": color.primary,
 				"colourSecondary": color.secondary,
-				"colourTertiary": color.tertiary
+				"colourTertiary": color.tertiary*/
+        "inputsInline": true,
+        "output": "Number",
+        "colour": color.primary,
+        "colourSecondary": color.secondary,
+        "colourTertiary": color.tertiary,
+        "outputShape": 2
+
 				});
 		    }
 		}
@@ -61,15 +69,18 @@ Ipopcon.prototype.getPrimitives = function() {
 
 Ipopcon.prototype.getSensorData = function(argValues, util) {
 
-            this.IPOP.__device.enableAccelerometer(function (error){});
-            this.IPOP.__device.readAccelerometer(function(error, x, y, z) {
-            console.log('\tx = %d G', x.toFixed(1));
-            console.log('\ty = %d G', y.toFixed(1));
-            console.log('\tz = %d G', z.toFixed(1));
 
-          });
+            this.IPOP.__device.readAccelerometer(function(error, x=0, y=0, z=0) {
+/*            console.log('\tx = ', x);
+            console.log('\ty = ', y);
+            console.log('\tz = ', z);*/
+            this.IPOP._x = x;
 
 
+          }.bind(this));
+
+
+          return this.IPOP._x;
 };
 
 

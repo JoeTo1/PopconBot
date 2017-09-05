@@ -157,8 +157,16 @@ class GUI extends React.Component {
                     console.log("connection error!!")
                   }
 
+
+
                   ipopcon_device.readDeviceName(function (error, deviceName) {
                     console.log('\t connected device name = ' + deviceName);
+                  });
+
+                  ipopcon_device.enableAccelerometer(function (error){
+                    if(error){
+                      console.log("enabling accelerometer is failed!!");
+                    }
                   });
 
               });
