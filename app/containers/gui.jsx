@@ -169,9 +169,79 @@ class GUI extends React.Component {
                     }
                   });
 
+                  ipopcon_device.enableMagnetometer(function (error){
+                    if(error){
+                      console.log("enabling Magnetometer is failed!!");
+                    }
+                  });
+
+                  ipopcon_device.enableGyroscope(function (error){
+                    if(error){
+                      console.log("enabling Gyroscope is failed!!");
+                    }
+                  });
+
+                  ipopcon_device.enableIrTemperature(function (error){
+                    if(error){
+                      console.log("enabling IrTemperatur is failed!!");
+                    }
+                  });
+
+                  ipopcon_device.enableBarometricPressure(function (error){
+                    if(error){
+                      console.log("enabling BarometricPressure is failed!!");
+                    }
+                  });
+
+                  ipopcon_device.enableLuxometer(function (error){
+                    if(error){
+                      console.log("enabling Luxometer is failed!!");
+                    }
+                  });
+
+                  ipopcon_device.notifySimpleKey(function (error){
+                    if(error){
+                      console.log("enabling simple key is failed!!");
+                    }
+                  });
+
+/*
+                    ipopcon_device.on('simpleKeyChange', function(left, right, reedRelay) {
+
+                    if(right){
+                      this.IPOP._button_2  = 1;
+                      console.log("button 2 : " +  this.IPOP._button_2);
+                    }
+
+                    else {
+                      this.IPOP._button_2  = 0;
+                      console.log("button 2 : " +   this.IPOP._button_2);
+                    }
+
+                    if(left){
+                      this.IPOP._button_1  = 1;
+                      console.log("button 1 : " +   this.IPOP._button_1);
+                    }
+
+                    else {
+                      this.IPOP._button_1  = 0;
+                      console.log("button 1 : " +   this.IPOP._button_1);
+                    }
+
+                  });
+*/
+
+
+
+
               });
 
-              this.props.kb.plugin.IPOP.__device = ipopcon_device;
+
+
+
+
+
+              this.props.kb.plugin.IPOP._device = ipopcon_device;
 
 
 
