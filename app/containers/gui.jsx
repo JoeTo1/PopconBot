@@ -146,7 +146,7 @@ class GUI extends React.Component {
     toggleIpopconPanel(){
         //this.setState({showArduinoPanel: !this.state.showArduinoPanel});
         //console.log(this.props.kb.plugin);
-
+        console.log("Connection button is clicked!!");
 
 
 

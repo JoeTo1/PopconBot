@@ -34,7 +34,7 @@ var Ipopcon = function (runtime) {
         "tertiary": "#FF3355"
     };
 
-
+/*
     this.IPOP.on('simpleKeyChange', function(left, right, reedRelay) {
 
       if(right){
@@ -58,7 +58,7 @@ var Ipopcon = function (runtime) {
       }
 
     });
-
+*/
 
 
 
@@ -481,9 +481,12 @@ Ipopcon.prototype.getAccelvalue_z = function(argValues, util) {
 };
 Ipopcon.prototype.getAccelvalue_average = function(argValues, util) {
     this.IPOP._device.readAccelerometer(function(error, x=0, y=0, z=0) {
-        this.IPOP._average = (x+y+z)/3;
+//        this.IPOP._average = (x+y+z)/3;
+       this.IPOP._average = ( Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z,2)) - 1 );
+
     }.bind(this));
 
+    console.log("this.IPOP._average : " +this.IPOP._average);
     return this.IPOP._average;
 };
 
@@ -532,12 +535,14 @@ Ipopcon.prototype.getGyro_z = function(argValues, util) {
 Ipopcon.prototype.getButton_1 = function(argValues, util) {
   /* we should implemtent*/
 
-  return this.IPOP._button_1 ;
+  console.log("left : " + this.IPOP._device.left_button);
+  return this.IPOP._device.left_button;
 };
 Ipopcon.prototype.getButton_2 = function(argValues, util) {
   /* we should implemtent*/
-
-  return this.IPOP._button_2 ;
+  console.log("right : " + this.IPOP._device.right_button);
+  return this.IPOP._device.right_button;
+  //return this.IPOP._button_2 ;
 };
 Ipopcon.prototype.gettemperature = function(argValues, util) {
   this.IPOP._device.readIrTemperature(function(error, objectTemperature, ambientTemperature) {
@@ -563,6 +568,15 @@ Ipopcon.prototype.getBaro = function(argValues, util) {
 };
 Ipopcon.prototype.getAltitude = function(argValues, util) {
   /* we should implemtent*/
+
+  this.IPOP._device.readBarometricPressure(function(error, pressure) {
+      this.IPOP._baro  = pressure;
+  }.bind(this));
+
+  this.IPOP._altitude = 44330*(1 - Math.pow((this.IPOP._baro/1013.4),1/5.255)  );    // p0 = 1013.4(seoul see hPa)
+//  console.log("this.IPOP._altitude : " + this.IPOP._baro);
+//  console.log("this.IPOP._altitude : " + this.IPOP._altitude);
+  return this.IPOP._altitude;
 };
 
 Ipopcon.prototype.getToolbox = function () {
